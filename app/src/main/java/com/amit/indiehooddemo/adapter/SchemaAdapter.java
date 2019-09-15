@@ -1,6 +1,7 @@
 package com.amit.indiehooddemo.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -95,6 +96,7 @@ public class SchemaAdapter extends RecyclerView.Adapter<SchemaAdapter.MyViewHold
                 Glide.with(context).load(value).apply(new RequestOptions().centerCrop()).into(holder.imageView);
                 holder.imageView.setVisibility(View.VISIBLE);
                 holder.textView.setText(label);
+                holder.textView.setTextColor(Color.WHITE);
             } else {
 
                 if(d.isArray()){

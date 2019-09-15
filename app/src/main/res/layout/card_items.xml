@@ -37,7 +37,7 @@
             android:textSize="16sp"
             android:id="@+id/gridName"/>
 
-        <GridView
+        <com.amit.indiehooddemo.StaticGridView
             android:id="@+id/gridview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

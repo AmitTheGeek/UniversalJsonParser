@@ -70,10 +70,10 @@ public class DetailActivity extends AppCompatActivity {
             JSONObject schemaJson = new JSONObject(sjson);
 
             JSONObject data = dataJson.getJSONObject(name);
-
-
+            String title = data.getString("title");
+            setTitle(title);
             JSONObject schema = schemaJson.getJSONObject(data.getString("type"));
-
+            schema.remove("title");
             schema.remove("type");
             Type mapType = new TypeToken<Map<String, SchemaDataType>>() {}.getType();
             Map<String, SchemaDataType> map = gson.fromJson(schema.toString(), mapType);
@@ -90,36 +90,5 @@ public class DetailActivity extends AppCompatActivity {
         }
 
     }
-
-    private void loadSchema(){
-        //getting the progressbar
-        final ProgressBar progressBar = findViewById(R.id.progressBar);
-
-        //making the progressbar visible
-        progressBar.setVisibility(View.VISIBLE);
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.GET, SCHEMA_URL, null, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                       // loadData(response);
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        progressBar.setVisibility(View.INVISIBLE);
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-        //creating a request queue
-
-        //adding the string request to request queue
-        requestQueue.add(jsonObjectRequest);
-    }
-
 
 }
